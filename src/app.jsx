@@ -68,7 +68,7 @@ function App() {
         <Col xs={3}>
           <h4>Rotated envelope</h4>
           <CoordContainer>
-            <Envelope />
+            <Envelope rotate={90}/>
           </CoordContainer>
         </Col>
       </Row>

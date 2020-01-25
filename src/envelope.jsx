@@ -5,6 +5,9 @@ function Envelope(props) {
   const { width, height } = props,
     translateX = props.cx - width/2,
     translateY = props.cy - props.height/2,
+    translateString = `translate(${translateX},${translateY})`,
+    rotateString = `rotate(${props.rotate} ${translateX} ${translateY})`,
+    transformString= translateString + ' ' + rotateString,
     etop = path(),
     estem = path(),
     esteml = path(),
@@ -28,7 +31,7 @@ function Envelope(props) {
   estemr.moveTo(2*width/3, height/6);
   estemr.quadraticCurveTo(width/2, height/2, 3*width/4, height);
   return (<g
-      transform={`translate(${translateX},${translateY})`}
+      transform={transformString}
     >
     <path
       d={estem.toString()}
@@ -57,7 +60,8 @@ function Envelope(props) {
 
 Envelope.defaultProps = {
   width: 100,
-  height: 100 
+  height: 100,
+  rotate: 0
 };
 
 export default Envelope;
