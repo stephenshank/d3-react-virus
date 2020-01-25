@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Envelope from "./envelope.jsx";
+import Virus from "./virus.jsx";
 
 import "./styles.scss";
 
@@ -41,15 +42,17 @@ function CoordContainer(props) {
       stroke="lightgrey"
     />)
       {React.cloneElement(props.children, {
-        cx: width/2,
-        cy: width/2
+        cx: props.cx,
+        cy: props.cy
       })}
   </svg>);
 }
 
 CoordContainer.defaultProps = {
   width: 200,
-  height: 200
+  height: 200,
+  cx: 100,
+  cy: 100
 }
 
 function App() {
@@ -67,8 +70,22 @@ function App() {
         </Col>
         <Col xs={3}>
           <h4>Rotated envelope</h4>
-          <CoordContainer>
-            <Envelope rotate={90}/>
+          <CoordContainer
+            cx={200/3}
+            cy={200/3}
+          >
+            <Envelope
+              rotate={90}
+            />
+          </CoordContainer>
+        </Col>
+        <Col xs={6}>
+          <h4>Virus</h4>
+          <CoordContainer
+            width={400}
+            height={400}
+          >
+            <Virus />
           </CoordContainer>
         </Col>
       </Row>

@@ -6,8 +6,7 @@ function Envelope(props) {
     translateX = props.cx - width/2,
     translateY = props.cy - props.height/2,
     translateString = `translate(${translateX},${translateY})`,
-    rotateString = `rotate(${props.rotate} ${translateX} ${translateY})`,
-    transformString= translateString + ' ' + rotateString,
+    rotateString = `rotate(${props.rotate},${width/2},${height/2})`,
     etop = path(),
     estem = path(),
     esteml = path(),
@@ -31,8 +30,9 @@ function Envelope(props) {
   estemr.moveTo(2*width/3, height/6);
   estemr.quadraticCurveTo(width/2, height/2, 3*width/4, height);
   return (<g
-      transform={transformString}
+      transform={translateString}
     >
+    <g transform={rotateString}>
     <path
       d={estem.toString()}
       fill="red"
@@ -55,6 +55,7 @@ function Envelope(props) {
       strokeWidth={2}
       fill="red"
     />
+    </g>
   </g>)
 }
 
